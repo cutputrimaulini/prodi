@@ -47,6 +47,7 @@
                                 Yang diajukan</th>
                             <th class="sorting" tabindex="0" aria-controls="datatable-basic" rowspan="1" colspan="1"
                                 aria-label="Salary: activate to sort column ascending" style="width: 114px;">Status</th>
+                            
                            
                         </tr>
                     </thead>

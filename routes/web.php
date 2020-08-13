@@ -31,11 +31,6 @@ Route::get('/prodi/persetujuan', 'ProdiController@persetujuan')->name('prodi.per
 Route::get('/prodi/formpa', 'ProdiController@formpa')->name('prodi.formpa');
 
 
-//data
-Route::get('/datas', 'DataController@index')->name('datas.index');
-Route::post('/datas/uploadta', 'DataController@uploadta')->name('datas.ta');
-
-
 Route::put('/checkbox/{id}', 'ProdiController@update');
 // Route::get('/cek', function(){
 //     $data = \App\Prodi::all();

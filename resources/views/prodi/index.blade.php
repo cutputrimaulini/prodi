@@ -1,4 +1,4 @@
-@extends('Layouts.index')
+@extends('layouts.index')
 @section('content')
 <div class="container-fluid mt-4">
 
@@ -55,7 +55,7 @@
                         @foreach($prodi as $index=>$pj)
                         <tr>
                             <td>{{ $index + 1}}</td>
-                            <td>{{ $pj->created_at}}</td>
+                            <td>{{ $pj->created_at->toDateString()}}</td>
                             <td>{{ $pj->nama}}</td>
                             <td>{{ $pj->nim}}</td>
                             <td>{{ $pj->judul}}</td>
@@ -74,12 +74,45 @@
                                 </form>
                             </td>
                             <td>
-                                <form action="/checkbox/{{$pj->id}}" method="post">
-                                    @method('put')
-                                    @csrf
-                                    <input type="hidden" value="tolak" name="status">
-                                    <button class="btn btn-sm btn-primary foad-right ml-3" type="submit">Tolak</button>
-                                </form>
+                                    
+                                    
+                                <button class="btn btn-sm btn-primary foad-right ml-3" data-toggle="modal" data-target="#tolakAlasan{{$pj->id}}">Tolak</button>
+                               
+                                <!-- Modal -->
+                                <div class="modal fade" id="tolakAlasan{{$pj->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                    aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Alasan Tolak Judul PA</h5> 
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                            <h3>Judul : {{ $pj->judul}}</h3>
+                                            <form action="/checkbox/{{$pj->id}}" method="POST">
+                                                    @method('put')
+                                                    @csrf
+                                                    <input type="hidden" value="tolak" name="status">
+                                                    <input type="hidden" name="id" value="#">
+                                                    <div class="form-group row">
+                                                        <label for="example-text-input" class="col-md-5 col-form-label form-control-label">Alasan</label>
+                                                        <div class="col-md-12">
+                                                            <input class="form-control" type="text" name="alasan"
+                                        id="example-text-input" value="">
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                                    </div>
+                                            </form>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </td>
             </div>
             </tr>
@@ -90,8 +123,11 @@
         </div>
     </div>
 </div>
-
-
-
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+    
+    });
+</script> -->
 
 @endsection

@@ -45,12 +45,7 @@
                 </ul>
               </div>
             </li>
-                <!-- <li class="nav-item">
-                <a href="{{ route('datas.index') }}" class="nav-link">
-                    <i class="ni ni-ungroup text-orange"></i>
-                        <span class="nav-link-text">Data</span>
-                    </a>
-                </li> -->
+               
             </ul>
         </div>
     </div>

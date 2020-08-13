@@ -107,7 +107,7 @@
                 <div class="header-body text-center mb-5">
                     <div class="row justify-content-center">
                         <div class="col-xl-5 col-lg-6 col-md-8 px-5">
-                            <h1 class="text-white">Welcome To Prodi</h1>
+                            <h1 class="text-white">Welcome to Prodi</h1>
                             <p class="text-lead text-white">Pastikan Admin Melakukan Login</p>
                         </div>
                     </div>

@@ -11,12 +11,7 @@ use App\User;
 use App\FormPA;
 class ProdiController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-
+  
     public function getProdi($id){
         $prodis = Http::get('https://siakad.sitpa.my.id/api/prodi')->json();
         $prodi = User::hydrate($prodis)->where('id', $id)->first(); // memfilter json berdasarkan id prodi
@@ -44,7 +39,7 @@ class ProdiController extends Controller
         return view('prodi.persetujuan', ['persetujuan' => $persetujuan,'prodinama' => $prodiData->nama_prodi]);
     }
 
-    
+    // kumpulan form PA
     public function formpa()
     {        
         $user = auth()->user();
@@ -63,12 +58,22 @@ class ProdiController extends Controller
         
         return view('prodi.formpa',['data' => $datafix, 'prodinama' => $prodiData->nama_prodi]);
     }
-  
-    public function store(Request $request)
-    {
-        prodi::create($request->all());
-        return redirect('prodi|create');
-    }
+ 
+//     public function store(Request $request)
+//     {
+//         prodi::create($request->all());
+//         return redirect('prodi|create');
+//     }
+
+    // public function edit(Request $request, $id)
+    // {
+    //     $request->validate([
+    //         'alasan' => 'request'
+    //     ])
+    //     $data =DB::table('pengajuan_judul')->where('id',$id)->edit(['alasan' => $request->alasan]);
+    //     return redirect()->back();
+    // }
+
 
     public function update(Request $request, $id)
     {
@@ -77,10 +82,14 @@ class ProdiController extends Controller
             'status' => 'required'
         ]);
         
-        $data = DB::table('pengajuan_judul')->where('id',$id)->update(['status' => $request->status]);
- return redirect()->back();
+        $data = DB::table('pengajuan_judul')->where('id',$id)->update([
+            'status' => $request->status,
+            'alasan' => $request->alasan
+        ]);
+        return redirect()->back();
         // echo 'success';
     }
 
+  
 
 }
